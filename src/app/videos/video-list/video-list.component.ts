@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VideoService } from 'src/app/shared/video.service';
 
 @Component({
   selector: 'app-video-list',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:VideoService) { }
 
   ngOnInit() {
+      this.service.refreshList()
   }
 
 }
