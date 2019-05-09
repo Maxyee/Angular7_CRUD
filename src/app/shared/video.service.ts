@@ -35,4 +35,26 @@ export class VideoService {
     this.http.get(this.rootURL+'/videos',httpOptions)
     .toPromise().then(res => this.list  = res['results'] as Video[])
   }
+
+
+  putVideo(formData:Video){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Token 4adf3d9cfa4d1efd4ec3dace664e6061110fe0f4',
+        'Content-Type': 'application/json' })
+    }
+
+    //debugger
+    return this.http.put(this.rootURL+'/videos/'+formData.id, formData, httpOptions);
+  }
+
+  deleteVideo(id: number){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Token 4adf3d9cfa4d1efd4ec3dace664e6061110fe0f4',
+        'Content-Type': 'application/json' })
+    }
+
+    return this.http.delete(this.rootURL+'/videos/'+id,httpOptions);
+  }
 }

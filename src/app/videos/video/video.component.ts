@@ -21,6 +21,7 @@ export class VideoComponent implements OnInit {
       form.resetForm();
 
     this.service.formData = {
+      id:null,
       video_title: '',
       video_description: '',
       categories: '',
@@ -30,15 +31,33 @@ export class VideoComponent implements OnInit {
     }
   }
 
+  debugger
   onSubmit(form: NgForm){
-    this.insertRecord(form);
+    if(form.value.id == null)
+    {
+      this.insertRecord(form);
+    }
+    else
+    {
+      this.updateRecord(form);
+    }
   }
 
   insertRecord(form: NgForm){
       this.service.postVideo(form.value).subscribe(res => {
-          this.toastr.success("Inserted Successfully",'VID. Add')
+          this.toastr.success("Inserted Successfully",'VID. Added')
           this.resetForm(form);
+          this.service.refreshList();
       });
+  }
+
+
+  updateRecord(form: NgForm){
+      this.service.putVideo(form.value).subscribe(res => {
+        this.toastr.warning("Updated Successfully",'VID. updated')
+        this.resetForm(form);
+        this.service.refreshList();
+    });
   }
 
 }

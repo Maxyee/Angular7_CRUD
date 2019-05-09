@@ -1,4 +1,5 @@
 export class Video {
+    id:number;
     video_title:string;
     video_description:string;
     created_at:Date;

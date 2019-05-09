@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/shared/video.service';
+import { Video } from 'src/app/shared/video.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-video-list',
@@ -8,10 +10,24 @@ import { VideoService } from 'src/app/shared/video.service';
 })
 export class VideoListComponent implements OnInit {
 
-  constructor(private service:VideoService) { }
+  constructor(private service:VideoService, private toastr: ToastrService) { }
 
   ngOnInit() {
       this.service.refreshList()
+  }
+
+  populateForm(vid : Video){
+      this.service.formData = Object.assign({},vid);
+  }
+
+  onDelete(id : number){
+    if(confirm('Are you sure to delete it??')){
+      this.service.deleteVideo(id).subscribe(res=>{
+        this.service.refreshList();
+        this.toastr.warning('Deleted successfully', 'VID. Deleted')
+        });
+    }
+
   }
 
 }
