@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { EmbedVideo } from 'ngx-embed-video';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    FileUploadModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    EmbedVideo.forRoot()
   ],
   providers: [VideoService],
   bootstrap: [AppComponent]

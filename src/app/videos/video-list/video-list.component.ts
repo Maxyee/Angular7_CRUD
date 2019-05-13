@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/shared/video.service';
 import { Video } from 'src/app/shared/video.model';
 import { ToastrService } from 'ngx-toastr';
+import { EmbedVideoService } from 'ngx-embed-video';
 
 @Component({
   selector: 'app-video-list',
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VideoListComponent implements OnInit {
 
-  constructor(private service:VideoService, private toastr: ToastrService) { }
+  constructor(private service:VideoService, private toastr: ToastrService, private embedService:EmbedVideoService) { }
 
   ngOnInit() {
       this.service.refreshList()
@@ -29,5 +30,8 @@ export class VideoListComponent implements OnInit {
     }
 
   }
+
+
+
 
 }

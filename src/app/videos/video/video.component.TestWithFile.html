@@ -1,0 +1,28 @@
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id"/>
+    <div class="form-group">
+        <label>Video Title</label>
+        <input name="video_title" #video_title="ngModel" [(ngModel)]="service.formData.video_title" class="form-control" required/>
+        <div class="validation-error" *ngIf="video_title.invalid && video_title.touched">This field is required</div>
+    </div>
+
+    <div class="form-group">
+        <label>Video Description</label>
+        <input name="video_description" #video_description="ngModel" [(ngModel)]="service.formData.video_description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Upload File</label>
+        <input type="file" name="file" class="form-control" [(ngModel)]="service.formData.file"  (change)="onSelectFile($event)" observeFiles/>
+    </div>
+
+
+    <div class="form-group">
+        <label>Categories</label>
+        <input name="categories" #categories="ngModel" [(ngModel)]="service.formData.categories" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <button type="submit" [disabled]="form.invalid"  class="btn btn-lg btn-block">Submit</button>
+    </div>
+</form>

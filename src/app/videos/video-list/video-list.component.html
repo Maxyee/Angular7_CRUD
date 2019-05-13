@@ -5,6 +5,18 @@
       <td (click)="populateForm(vid)">{{ vid.video_description }}</td>
       <td (click)="populateForm(vid)">{{ vid.categories }}</td>
       <td (click)="populateForm(vid)">{{ vid.user }}</td>
+
+      <video height="200" width="300" class="video-fluid z-depth-1" autoplay loop controls muted>
+          <source src="http://localhost:8000{{vid.file}}"  />
+      </video>
+
+      <td>{{ vid.file }}</td>
+
       <td><button (click)="onDelete(vid.id)" class="btn btn-sm btn-outline-danger">X</button></td>
     </tr>
+
+
 </table>
+
+
+

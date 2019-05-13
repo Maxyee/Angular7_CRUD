@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/shared/video.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+
+import { Video } from 'src/app/shared/video.model';
+
 
 @Component({
   selector: 'app-video',
@@ -10,10 +13,22 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VideoComponent implements OnInit {
 
-  constructor(private service: VideoService, private toastr: ToastrService ) { }
+  constructor(private service: VideoService, private toastr: ToastrService) { }
+
+
+  videoForm: FormGroup;
+
 
   ngOnInit() {
     this.resetForm();
+  }
+
+
+  onSelectFile(event){
+    if (event.target.files.length > 0){
+        const fileValue = event.target.files[0];
+        this.videoForm.get('file').setValue(fileValue);
+    }
   }
 
   resetForm(form? : NgForm){
@@ -24,6 +39,7 @@ export class VideoComponent implements OnInit {
       id:null,
       video_title: '',
       video_description: '',
+      file: null,
       categories: '',
       created_at: null,
       updated_at: null,
@@ -31,7 +47,12 @@ export class VideoComponent implements OnInit {
     }
   }
 
-  debugger
+  onSubmitTest(form: NgForm){
+      debugger
+      console.log(form.value.file[0]);
+  }
+
+
   onSubmit(form: NgForm){
     if(form.value.id == null)
     {

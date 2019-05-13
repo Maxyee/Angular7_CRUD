@@ -22,6 +22,10 @@ export class VideoService {
         'Content-Type': 'application/json' })
     }
 
+    // const formFile :Video = new Video();
+    // formFile.append('video',formData.file,formData.video_title)
+
+
     return this.http.post(this.rootURL+'/videos/',formData,httpOptions);
   }
 
